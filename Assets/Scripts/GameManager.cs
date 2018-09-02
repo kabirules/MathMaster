@@ -35,6 +35,10 @@ public class GameManager : MonoBehaviour {
 	}
 
 	public void StartGame() {
+		this.NextAnswer();
+	}
+
+	public void NextAnswer() {
 		this.GenerateRandomNumber();
 		this.GenerateRandonWrongNumbers();
 		this.UpdateButtonTexts();
@@ -50,7 +54,8 @@ public class GameManager : MonoBehaviour {
 			intAux = this.endValue - this.currentValue;
 		}
 		this.generatedValue = intAux;
-		this.txtTargetValue.text = intAux.ToString() + " / " + this.endValue.ToString();
+		this.targetValue = intAux + this.currentValue;
+		this.txtTargetValue.text = this.targetValue.ToString() + " / " + this.endValue.ToString();
 	}
 
 	public void GenerateRandonWrongNumbers() {
@@ -88,5 +93,18 @@ public class GameManager : MonoBehaviour {
 		GameObject.Find("Button" + rnd1).GetComponentInChildren<Text>().text = this.generatedWrongValue2.ToString();
 		GameObject.Find("Button" + rnd2).GetComponentInChildren<Text>().text = this.generatedWrongValue1.ToString();
 		GameObject.Find("Button" + rnd3).GetComponentInChildren<Text>().text = this.generatedValue.ToString();
+	}
+
+	public void Answer(string buttonName) {
+		string buttonText = GameObject.Find(buttonName).GetComponentInChildren<Text>().text;
+		int intAnswer = System.Int32.Parse(buttonText);
+		if (this.targetValue == this.currentValue + intAnswer) {
+			Debug.Log("Correct!");
+			this.currentValue = this.targetValue;
+			this.txtCurrentValue.text = this.currentValue.ToString();
+		} else {
+			Debug.Log("Error!");
+		}
+		this.NextAnswer();
 	}
 }
