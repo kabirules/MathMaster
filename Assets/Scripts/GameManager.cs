@@ -70,7 +70,20 @@ public class GameManager : MonoBehaviour {
 		}
 	}
 
+	// Set the button texts randomly
 	public void UpdateButtonTexts() {
-		GameObject.Find("Button1").GetComponentInChildren<Text>().text = "la di da";
+		float fltRnd1 = Random.Range(1f, 3f);
+		int rnd1 = (int)fltRnd1;
+		int rnd2 = rnd1;
+		while (rnd2 == rnd1) {
+			float fltRnd2 = Random.Range(1f, 3f);
+			rnd2 = (int)fltRnd2;
+		}
+		int [] allNumbers = new int[3]  { 1, 2, 3};
+		allNumbers = allNumbers.Except(new int[]{rnd1, rnd2}).ToArray();
+		int rnd3 = allNumbers[0];
+		GameObject.Find("Button" + rnd1).GetComponentInChildren<Text>().text = this.generatedWrongValue2.ToString();
+		GameObject.Find("Button" + rnd2).GetComponentInChildren<Text>().text = this.generatedWrongValue1.ToString();
+		GameObject.Find("Button" + rnd3).GetComponentInChildren<Text>().text = this.generatedValue.ToString();
 	}
 }
