@@ -73,11 +73,13 @@ public class GameManager : MonoBehaviour {
 
 	// Set the button texts randomly
 	public void UpdateButtonTexts() {
-		float fltRnd1 = Random.Range(1f, 3f);
+		float fltRnd1 = Random.Range(0.5f, 3.5f);
+		fltRnd1 = (float)System.Math.Round((System.Decimal)fltRnd1, 0, System.MidpointRounding.AwayFromZero);
 		int rnd1 = (int)fltRnd1;
 		int rnd2 = rnd1;
 		while (rnd2 == rnd1) {
-			float fltRnd2 = Random.Range(1f, 3f);
+			float fltRnd2 = Random.Range(0.5f, 3.5f);
+			fltRnd2 = (float)System.Math.Round((System.Decimal)fltRnd2, 0, System.MidpointRounding.AwayFromZero);
 			rnd2 = (int)fltRnd2;
 		}
 		int [] allNumbers = new int[3]  { 1, 2, 3};
