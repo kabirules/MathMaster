@@ -101,7 +101,12 @@ public class GameManager : MonoBehaviour {
 		if (this.targetValue == this.currentValue + intAnswer) {
 			Debug.Log("Correct!");
 			this.currentValue = this.targetValue;
-			this.txtCurrentValue.text = this.currentValue.ToString();
+			if (this.currentValue == this.endValue) {
+				this.txtCurrentValue.text = "You won";
+			} else {
+				this.txtCurrentValue.text = this.currentValue.ToString();
+			}
+			
 		} else {
 			Debug.Log("Error!");
 		}
